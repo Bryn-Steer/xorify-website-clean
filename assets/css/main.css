@@ -2921,19 +2921,19 @@ START: Header CSS
   }
 }
 .header .primary-header-inner .header-logo img {
-  max-width: 120px;
+  max-width: 260px;
 }
 .header .primary-header-inner .header-logo .logo-light {
   display: none;
 }
 @media (max-width: 1399px) {
   .header .primary-header-inner .header-logo img {
-    max-width: 100px;
+    max-width: 180px;
   }
 }
 @media (max-width: 1199px) {
   .header .primary-header-inner .header-logo img {
-    max-width: 100px;
+    max-width: 160px;
   }
 }
 .header .primary-header-inner .header-menu-wrap {
@@ -4830,20 +4830,23 @@ START: Hero CSS
   position: absolute;
   bottom: -22.5px;
   right: 0;
+  max-width: 610px;
 }
 @media (max-width: 1399px) {
   .hero-section .hero-img {
     right: -20%;
+    max-width: 610px;
   }
 }
 @media only screen and (max-width: 992px) {
   .hero-section .hero-img {
-    max-width: 610px;
+    max-width: 510px;
   }
 }
 @media only screen and (max-width: 767px) {
   .hero-section .hero-img {
     display: none;
+    max-width: 410px;
   }
 }
 .hero-section .hero-images {
@@ -6322,8 +6325,8 @@ START: Process CSS
   }
 }
 .process-item .process-icon img {
-  width: 55px;
-  height: 55px;
+  width: 90px;
+  height: 90px;
   object-fit: contain;
 }
 .process-item .process-icon.icon-2 {
