@@ -4974,7 +4974,6 @@ START: Hero CSS
   }
 }
 .hero-content .hero-btn {
-  background-image: url(../img/bg-img/hero-btn-bg.png);
   color: var(--rr-color-common-white);
   font-size: 60px;
   height: 180px;
