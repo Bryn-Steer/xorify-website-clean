@@ -8,6 +8,7 @@
         $phone = strip_tags(trim($_POST["phone"]));
         $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
         $message = trim($_POST["message"]);
+        $topic = strip_tags(trim($_POST["topic"]));
 
         // Check that data was sent to the mailer.
         if ( empty($fullname) OR empty($phone) OR empty($message) OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -18,15 +19,14 @@
         }
 
         // Update this to your desired email address.
-        $recipient = "contact@yourdomain.com";
+        $recipient = "answers@xorify.com";
 		$subject = "Message from $fullname";
 
-        // Email content.
         $email_content = "Name: $fullname\n";
-        $email_content .= "Email: $email\n\n";
-        $email_content .= "Subject: $subject\n\n";
-        $email_content .= "Phone: $phone\n\n";
-        $email_content .= "Message: $message\n";
+        $email_content .= "Email: $email\n";
+        $email_content .= "Phone: $phone\n";
+        $email_content .= "Topic: $topic\n";
+        $email_content .= "Message:\n$message\n";
 
         // Email headers.
         $email_headers = "From: $fullname <$email>\r\nReply-to: <$email>";
