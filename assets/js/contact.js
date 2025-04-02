@@ -4,6 +4,8 @@
 * @ThemeEaster
 */
 $(function() {
+	console.log("contact.js is loaded!");
+
     // Get the form.
     var form = $('#ajax_contact');
 

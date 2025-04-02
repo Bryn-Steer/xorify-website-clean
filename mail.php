@@ -1,51 +1,64 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
-    // Only process POST reqeusts.
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Get the form fields and remove whitespace.
-        $fullname = strip_tags(trim($_POST["fullname"]));
-		$fullname = str_replace(array("\r","\n"),array(" "," "),$fullname);
-        $phone = strip_tags(trim($_POST["phone"]));
-        $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
-        $message = trim($_POST["message"]);
-        $topic = strip_tags(trim($_POST["topic"]));
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-        // Check that data was sent to the mailer.
-        if ( empty($fullname) OR empty($phone) OR empty($message) OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            // Set a 400 (bad request) response code and exit.
-            http_response_code(400);
-            echo "Oops! There was a problem with your submission. Please complete the form and try again.";
-            exit;
-        }
+// Load PHPMailer
+require __DIR__ . '/PHPMailer-master/src/Exception.php';
+require __DIR__ . '/PHPMailer-master/src/PHPMailer.php';
+require __DIR__ . '/PHPMailer-master/src/SMTP.php';
 
-        // Update this to your desired email address.
-        $recipient = "answers@xorify.com";
-		$subject = "Message from $fullname";
 
-        $email_content = "Name: $fullname\n";
-        $email_content .= "Email: $email\n";
-        $email_content .= "Phone: $phone\n";
-        $email_content .= "Topic: $topic\n";
-        $email_content .= "Message:\n$message\n";
+// Only process POST requests
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $fullname = strip_tags(trim($_POST["fullname"]));
+    $phone = strip_tags(trim($_POST["phone"]));
+    $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
+    $message = trim($_POST["message"]);
+    $topic = strip_tags(trim($_POST["topic"]));
 
-        // Email headers.
-        $email_headers = "From: $fullname <$email>\r\nReply-to: <$email>";
-
-        // Send the email.
-        if (mail($recipient, $subject, $email_content, $email_headers)) {
-            // Set a 200 (okay) response code.
-            http_response_code(200);
-            echo "Thank You! Your message has been sent.";
-        } else {
-            // Set a 500 (internal server error) response code.
-            http_response_code(500);
-            echo "Oops! Something went wrong and we couldn't send your message.";
-        }
-
-    } else {
-        // Not a POST request, set a 403 (forbidden) response code.
-        http_response_code(403);
-        echo "There was a problem with your submission, please try again.";
+    if (empty($fullname) || empty($phone) || empty($message) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        http_response_code(400);
+        echo "Please complete the form and try again.";
+        exit;
     }
 
+    $mail = new PHPMailer(true);
+
+    try {
+        // Server settings
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';      // e.g., smtp.gmail.com
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'answers@xorify.com';  // your email
+        $mail->Password   = 'poqivlxrtqxftwjx';     // your app password
+        $mail->SMTPSecure = 'tls';
+        $mail->Port       = 587;
+
+        // Recipients
+        $mail->setFrom($email, $fullname);
+        $mail->addAddress('answers@xorify.com', 'Xorify');
+
+        // Content
+        $mail->isHTML(true);
+        $mail->Subject = "New Contact Form Submission from $fullname";
+        $mail->Body    = "
+            <strong>Name:</strong> $fullname<br>
+            <strong>Email:</strong> $email<br>
+            <strong>Phone:</strong> $phone<br>
+            <strong>Topic:</strong> $topic<br>
+            <strong>Message:</strong><br>$message
+        ";
+
+        $mail->send();
+        http_response_code(200);
+        echo "Thank You! Your message has been sent.";
+
+    } catch (Exception $e) {
+        http_response_code(500);
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+}
 ?>

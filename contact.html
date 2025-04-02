@@ -259,28 +259,25 @@
                     <div class="col-lg-7">
                         <div class="blog-contact-form form-2">
                             <div class="request-form">
-                                <form action="mail.php" method="post" id="ajax_contact" class="form-horizontal">
+                                <div id="form-messages"></div>
+                                <form id="ajax_contact" action="mail.php" method="post" id="ajax_contact" class="form-horizontal">
                                     <div class="form-group row">
+                                        <h2 class="section-title" data-text-animation data-split="word" data-duration="1">Share Your Thoughts!</h2>
                                         <div class="col-md-6">
                                             <div class="form-item">
-                                                <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Your Name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-item">
-                                                <input type="text" id="lastname" name="lastname" class="form-control" placeholder="Last Name">
+                                                <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Your Name*" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-6">
                                             <div class="form-item">
-                                                <input type="text" id="email" name="email" class="form-control" placeholder="Email address*">
+                                                <input type="text" id="email" name="email" class="form-control" placeholder="Email address*" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-item">
-                                                <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone number*">
+                                                <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone number">
                                             </div>
                                         </div>
                                     </div>
@@ -299,7 +296,7 @@
                                     <div class="form-group row">
                                         <div class="col-md-12">
                                             <div class="form-item message-item">
-                                                <textarea id="message" name="message" cols="30" rows="5" class="form-control address" placeholder="Message"></textarea>
+                                                <textarea id="message" name="message" cols="30" rows="5" class="form-control address" placeholder="Message*"></textarea required>
                                             </div>
                                         </div>
                                     </div>
