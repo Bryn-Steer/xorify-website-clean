@@ -12080,6 +12080,8 @@ START: Reward CSS
 
 /* START: Flashy Contact Form Messages */
 
+
+
 #form-messages {
   margin-top: 20px;
   font-size: 1.1rem;
@@ -12091,6 +12093,17 @@ START: Reward CSS
   animation-duration: 0.8s;
   animation-fill-mode: both;
 }
+
+#form-messages:empty {
+  display: none !important;
+  visibility: hidden;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  box-shadow: none;
+}
+
 
 /* Success animation */
 .alert-success {
