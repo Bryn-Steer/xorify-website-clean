@@ -9,8 +9,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
 
-    $apiKey = "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"; // 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 // Brevo API key // Don't flipping touch this key, it's sensitive information.
+    $apiKey = "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";
+
     $listId = 9; // Xorify Newsletter list ID
+
 
     $data = [
         "email" => $email,
@@ -35,20 +37,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     curl_close($ch);
 
     if ($httpCode == 201 || $httpCode == 204) {
-        echo '<div class="success-message">';
-        echo '<i class="fas fa-check-circle"></i> Success! You\'re subscribed.<br>';
-        echo 'Please check your inbox for a confirmation email and further instructions.';
-        echo '</div>';
+        echo "✅ Success! You're subscribed.";
     } else {
         http_response_code(500);
-        echo '<div class="error-message">';
-        echo '<i class="fas fa-exclamation-triangle"></i> Failed. Brevo API responded with status code: ' . $httpCode . '<br><br>';
-        echo '<strong>Response:</strong><br>';
-        echo '<pre>';
+        echo "❌ Failed. Brevo API responded with status code: " . $httpCode . "<br><br>";
+        echo "<strong>Response:</strong><br>";
+        echo "<pre>";
         print_r($response);
-        echo '</pre>';
-        echo '</div>';
+        echo "</pre>";
+
     }
+    
 } else {
     http_response_code(403);
     echo "Forbidden.";
