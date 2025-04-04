@@ -584,21 +584,21 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-widget">
                             <div class="widget-header">
-                                <h3 class="widget-title">Subscribe newsletter</h3>
+                                <h3 class="widget-title">Subscribe To Newsletter</h3>
                             </div>
                             <div class="footer-form mb-20">
-                                <form action="#" class="rr-subscribe-form">
-                                    <input class="form-control" type="email" name="email" placeholder="Email address">
-                                    <input type="hidden" name="action" value="mailchimpsubscribe">
-                                    <button class="submit">Sign Up</button>
+                                <form action="/newsletter.php" method="POST" class="rr-subscribe-form">
+                                    <input class="form-control" type="email" name="email" placeholder="Email address" required>
+                                    <input type="hidden" name="action" value="brevo-subscribe">
+                                    <button class="submit" type="submit">Sign Up</button>
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
                             <div class="form-check form-item">
-                                <input class="form-check-input" type="checkbox" value="" id="man">
+                                <input class="form-check-input" type="checkbox" name="consent" value="yes" id="man">
                                 <label class="form-check-label" for="man">
                                     I’m okay with getting emails and having
-                                    that tracked to improve my experience
+                                    that tracked to improve my experience.
                                 </label>
                             </div>
                         </div>
