@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
 
-    $apiKey = "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"; // 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 // Brevo API key // Don't flipping touch this key, it's sensitive information.
+    $apiKey = "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"; 
     $listId = 9; // Xorify Newsletter list ID
 
     $data = [
