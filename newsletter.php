@@ -9,7 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
 
-    $apiKey = "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";
+    $apiKey = getenv("SENDINBLUE_API_KEY");
+    
 
     $listId = 9; // Xorify Newsletter list ID
 
