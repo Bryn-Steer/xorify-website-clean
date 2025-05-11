@@ -2811,7 +2811,7 @@ ul {
   display: inline-flex;
   align-items: center;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1;
   padding: 22px 30px;
   border-radius: 0px;
@@ -4975,7 +4975,7 @@ START: Hero CSS
 }
 .hero-content .hero-btn {
   color: var(--rr-color-common-white);
-  font-size: 60px;
+  font-size: 40px;
   height: 180px;
   width: 180px;
   display: flex;
